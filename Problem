@@ -1,0 +1,157 @@
+/*Description:
+
+Problem 1
+ 
+Given two sets of elements, find the sum of all distinct elements from the set. In other words, find the sum of all elements which are present in either of the given set.
+Example:
+Set 1 : [3, 1, 7, 9], Set 2: [2, 4, 1, 9, 3]
+Output: 13 (distinct elements 4, 7, 2 )
+Give a solutions to this problem, using arrays
+
+*/
+
+
+1. Initialize an empty set `distinct_set`
+2. Initialize a variable `sum` to 0
+3. Initialize two sets `set1` and `set2` with elements
+4. For each element `x` in `set1`, do steps 5-6
+5.    If `x` is not in `distinct_set`, add it to `distinct_set` and add `x` to `sum`
+6. For each element `y` in `set2`, do steps 7-8
+7.    If `y` is not in `distinct_set`, add it to `distinct_set` and add `y` to `sum`
+8. Print `sum`
+
+
+Initialize sum = 0.
+Create an empty array "distinct".
+For each element "x" in set one:
+    If "x" is not in set two or "distinct":
+        Add "x" to the "distinct" array.
+        Add "x" to the "sum" variable.
+For each element "y" in set two:
+    If "y" is not in set one or "distinct":
+        Add "y" to the "distinct" array.
+        Add "y" to the "sum" variable.
+Return the "sum".
+
+FUNCTION findDistinctSum(setOne, setTwo)
+    sum := 0
+    distinct := []
+    FOR i FROM 0 TO setOne.length-1 DO
+        found := FALSE
+        FOR j FROM 0 TO setTwo.length-1 DO
+            IF (setOne[i] = setTwo[j]) THEN
+                found := TRUE
+                BREAK
+            END_IF
+        END_FOR
+        IF (NOT found AND NOT distinct.includes(setOne[i])) THEN
+            distinct.Push(setOne[i])
+            sum := sum + setOne[i]
+        END_IF
+    END_FOR
+    FOR i FROM 0 TO setTwo.length-1 DO
+        found := FALSE
+        FOR j FROM 0 TO setOne.length-1 DO
+            IF (setTwo[i] = setOne[j]) THEN
+                found := TRUE
+                BREAK
+            END_IF
+        END_FOR
+        IF (NOT found AND NOT distinct.includes(setTwo[i])) THEN
+            distinct.Push(setTwo[i])
+            sum := sum + setTwo[i]
+        END_IF
+    END_FOR
+    RETURN sum
+END_FUNCTION
+
+/*
+Pass by value: In this method, a copy of the value of the parameter is passed to the function or procedure. Any changes made to the parameter inside the function or procedure do not affect the original value outside of the function or procedure.
+
+Pass by reference: In this method, the memory location of the parameter is passed to the function or procedure. Any changes made to the parameter inside the function or procedure affect the original value outside of the function or procedure.
+
+Pass by pointer: This is similar to pass by reference, but instead of passing the memory location of the parameter, a pointer to the memory location is passed.
+
+Pass by array: In this method, the entire array is passed to the function or procedure. Any changes made to the array inside the function or procedure affect the original array outside of the function or procedure.
+
+Pass by object: In object-oriented programming, objects can be passed as parameters. The object is passed by reference, meaning any changes made to the object inside the function or procedure affect the original object outside of the function or procedure.
+
+*/
+
+/*
+Problem 2 
+You are asked to write an algorithm that fulfill the following: 
+
+Name: Dot product
+Description:
+Write a procedure, called dot_product which calculates in the variable ps, the dot(scalar) product of v1 and v2 (v1 and v2 are vectors of IR)
+Write an algorithm which determines, for n pairs of given vectors, whether two vectors of given IR are orthogonal, by calling the procedure defined in the previous question. The dot product of two orthogonal vectors is zero.
+Modify the previous algorithm if you use a dot_product function instead of a procedure.
+*/
+
+1. Define a function `dot_product` that takes in two vectors `v1` and `v2`
+2. Initialize a variable `ps` to 0
+3. For each index `i` in the range of the length of `v1`, do step 4
+4.    Add the product of `v1[i]` and `v2[i]` to `ps`
+5. Return `ps`
+6. Define a list of `n` pairs of vectors `vector_pairs`
+7. For each pair `v_pair` in `vector_pairs`, do step 8
+8.    Calculate the dot product of `v_pair[0]` and `v_pair[1]` using the `dot_product` function, and store the result in `dp`
+9.    If `dp` is 0, print "The vectors are orthogonal"
+10.   Otherwise, print "The vectors are not orthogonal"
+
+
+PROCEDURE dot_product(v1, v2, ps)
+    BEGIN
+        FOR i FROM 0 TO v1.length-1 DO
+            ps := ps + (v1[i] * v2[i])
+        END_FOR
+    END
+    /*********************/
+    FUNCTION areOrthogonal(vectors)
+        FOR i FROM 0 TO vectors.length-2 DO
+            FOR j FROM i+1 TO vectors.length-1 DO
+                dotProd := 0
+                dot_product(vectors[i], vectors[j], dotProd)
+                IF (dotProd <> 0) THEN
+                    RETURN FALSE
+                END_IF
+            END_FOR
+        END_FOR
+        RETURN TRUE
+    END_FUNCTION
+
+
+PROCEDURE dot_product(v1, v2, ps)
+    BEGIN
+        FOR i FROM 0 TO v1.length-1 DO
+            ps := ps + (v1[i] * v2[i])
+        END_FOR
+    END
+    /*********************/
+    FUNCTION areOrthogonal(vectors)
+        FOR i FROM 0 TO vectors.length-2 DO
+            FOR j FROM i+1 TO vectors.length-1 DO
+                dotProd := 0
+                dot_product(vectors[i], vectors[j], dotProd)
+                IF (dotProd <> 0) THEN
+                    RETURN FALSE
+                END_IF
+            END_FOR
+        END_FOR
+        RETURN TRUE
+    END_FUNCTION
+
+
+/*
+Pass by value: In this method, a copy of the value of the parameter is passed to the function or procedure. Any changes made to the parameter inside the function or procedure do not affect the original value outside of the function or procedure.
+
+Pass by reference: In this method, the memory location of the parameter is passed to the function or procedure. Any changes made to the parameter inside the function or procedure affect the original value outside of the function or procedure.
+
+Pass by pointer: This is similar to pass by reference, but instead of passing the memory location of the parameter, a pointer to the memory location is passed.
+
+Pass by array: In this method, the entire array is passed to the function or procedure. Any changes made to the array inside the function or procedure affect the original array outside of the function or procedure.
+
+Pass by object: In object-oriented programming, objects can be passed as parameters. The object is passed by reference, meaning any changes made to the object inside the function or procedure affect the original object outside of the function or procedure.
+
+*/
